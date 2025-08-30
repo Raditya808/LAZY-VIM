@@ -9,7 +9,7 @@ local opts = { noremap = true, silent = true }
 -- Navigation
 keymap("n", "<C-h>", "<C-w>h", opts) -- pindah ke windows kiri dengan memencet ctrl + h
 keymap("n", "<C-j>", "<C-w>j", opts) -- pindah ke windows bawah dengan memencet ctrl + j
-keymap("n", "<C-k>", "<C-w>k", opts) -- Move to the window above
+keymap("n", "<C-k>", "<C-w>k", opts) -- pindah ke windows ke atas dengan ctrl + k
 keymap("n", "<C-l>", "<C-w>l", opts) -- pindah ke windows ke kanan dengan memencet ctrl + l
 
 -- Save file
@@ -25,7 +25,7 @@ keymap("n", "<C-S>", ":wa<CR>", opts) -- save all open buffers / all open files
 keymap("n", "<leader>a", "ggVG", opts) -- Select all content in the file
 
 -- Additional useful keymaps
-keymap("n", "<leader>q", ":q<CR>", opts) -- Quit
+keymap("n", "<leader>q", ":q<CR>", opts) -- keluar | + q
 keymap("n", "<leader>x", ":xa<CR>", opts) -- Save and quit
 keymap("n", "<leader>sc", ":nohlsearch<cr>", opts) -- clear e highlight search
 keymap("i", "kj", "<Esc>", opts) -- keluar dari mode insert
