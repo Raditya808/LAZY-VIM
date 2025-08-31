@@ -93,4 +93,4 @@ copilot.rpc_notify = function(client_id, method, params)
 end
 
 return copilot
--- github copilot lua file
+-- github copilot lua - file
