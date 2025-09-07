@@ -745,6 +745,7 @@ function! s:commands.restart(opts) abort
   call s:Start()
 endfunction
 
+
 function! s:commands.disable(opts) abort
   let g:copilot_enabled = 0
 endfunction
