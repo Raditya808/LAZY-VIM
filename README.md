@@ -69,4 +69,3 @@ nvim
 ```bash
 :Copilot status (status)
 ```
-# Selamat Mencoba
