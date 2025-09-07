@@ -56,7 +56,7 @@ keymap("n", "<leader>ss", ":lua require('telescope.builtin').lsp_document_symbol
 keymap("n", "<leader>cc", ":lua require('telescope.builtin').commands()<CR>", opts)
 
 -- Increment/decrement
-keymap("n", "+", "<C-a>", opts) -- Increment
+keymap("n", "+", "<C-a>", opts) -- Increment/ increment rek
 keymap("n", "-", "<C-x>", opts) -- Decrement
 
 -- Inc-Rename
