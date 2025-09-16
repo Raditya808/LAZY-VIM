@@ -5,16 +5,12 @@ return {
 		require("toggleterm").setup({
 			direction = "float",
 			auto_scroll = true,
-
-			-- Use PowerShell as the shell on Windows, un-comment this syntax bellow
 			shell = vim.fn.has("win32") == 1 and "pwsh" or vim.o.shell,
 
-			-- whenever i open/re-open auto toggleterm in terminal/insert mode
 			on_open = function()
 				vim.cmd("startinsert!")
 			end,
 
-			size = 15,
 			open_mapping = [[<c-\>]],
 			hide_numbers = true,
 			shade_filetypes = {},
@@ -23,8 +19,12 @@ return {
 			insert_mappings = true,
 			persist_size = true,
 			close_on_exit = true,
+
 			float_opts = {
-				border = "curved",
+				border = "curved", -- bisa diganti "single" kalau mau lebih lurus/clean
+				width = 75, -- lebar terminal (px terminal / kolom teks)
+				height = 40, -- tinggi terminal
+				winblend = 0, -- transparansi (0 = solid)
 			},
 		})
 	end,
