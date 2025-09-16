@@ -2,6 +2,10 @@
 
 My first own config for neovim from scratch.
 
+## Contributors
+![All Contributors](https://img.shields.io/github/all-contributors/Raditya808/NEOVIM?color=ee8449)
+
+
 ## Requirments
 
 - Neovim >= 0.9.0 (needs to be built with LuaJIT)
