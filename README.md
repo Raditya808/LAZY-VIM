@@ -1,7 +1,6 @@
 # Neovim Lazy Config
 
 My first own config for neovim from scratch.
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
