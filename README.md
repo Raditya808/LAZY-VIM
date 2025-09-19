@@ -10,7 +10,25 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+## NEOVIM
+<p align="center">
+  <img src="assets/pict1.png" alt="ss" width="800px"/>
+</p>
 
+## Update with Discord rich
+<p align="center">
+    <img src="assets/pict2 update with discord rich.png" alt="ss" width="800px"/>
+  </p>
+  
+## With terminal
+<p align="center">
+    <img src="assets/pict3 update with terminal.png" alt="ss" width="800px"/>
+  </p>
+  
+## Copilot
+<p align="center">
+    <img src="assets/pict4 update with copilot.png" alt="ss" width="800px"/>
+  </p>
 
 ## Requirments
 
@@ -75,7 +93,9 @@ nvim
 ```bash
 :Copilot enable (for activate copilot)
 ```
-
+```bash
+:Copilot disable (to logout)
+```
 ```bash
 :Copilot status (status)
 ```
