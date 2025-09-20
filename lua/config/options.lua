@@ -14,7 +14,25 @@ vim.g.clipboard = {
 	cache_enabled = 0,
 }
 
--- Basic options
+-- Keymaps for Windows-like copy/paste
+-- Normal mode: copy line / visual selection using
+-- ctrl + c untuk copy kode yang di pilih garis penuh saat mode visual mode ke clipboard windows
+-- ctrl + v untuk paste di clipboard
+-- v untuk copy seluruh pilihan code dalam mode visual character mode
+vim.keymap.set("n", "<C-c>", '"+yy', { noremap = true, silent = true, desc = "Copy line to clipboard" })
+vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true, desc = "Copy selection to clipboard" })
+
+-- Normal & Visual mode: paste
+vim.keymap.set({ "n", "v" }, "<C-v>", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
+
+-- Insert mode: paste
+vim.keymap.set(
+	"i",
+	"<C-v>",
+	'<Esc>"+pa',
+	{ noremap = true, silent = true, desc = "Paste from clipboard in insert mode" }
+)
+
 vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
 vim.opt.hlsearch = true -- Highlight search results
