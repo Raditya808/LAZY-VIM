@@ -1,4 +1,4 @@
-# Neovim Lazy Config
+# Neovim My Own Lazy Config
 
 My first own config for neovim from scratch.
 ## Contributors ✨
