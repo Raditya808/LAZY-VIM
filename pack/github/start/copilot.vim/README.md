@@ -61,6 +61,8 @@ request access from your enterprise admin.
 | `:CopilotChatPrompts`      | View/select prompt templates  |
 | `:CopilotChatModels`       | View/select available models  |
 | `:CopilotChat<PromptName>` | Use specific prompt template  |
+| `:Copilot signout`         | Signout                       |
+    
 
 4.  Start Vim/Neovim and invoke `:Copilot setup`.
 
