@@ -94,8 +94,11 @@ nvim
 :Copilot enable (for activate copilot)
 ```
 ```bash
-:Copilot disable (to logout)
+:Copilot disable (to disable)
 ```
 ```bash
 :Copilot status (status)
+```
+```bash
+:Copilot signout
 ```
