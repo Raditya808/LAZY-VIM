@@ -46,6 +46,24 @@ request access from your enterprise admin.
           git clone --depth=1 https://github.com/github/copilot.vim.git `
             $HOME/AppData/Local/nvim/pack/github/start/copilot.vim
 
+## Commands
+
+| Command                    | Description                   |
+| -------------------------- | ----------------------------- |
+| `:CopilotChat <input>?`    | Open chat with optional input |
+| `:CopilotChatOpen`         | Open chat window              |
+| `:CopilotChatClose`        | Close chat window             |
+| `:CopilotChatToggle`       | Toggle chat window            |
+| `:CopilotChatStop`         | Stop current output           |
+| `:CopilotChatReset`        | Reset chat window             |
+| `:CopilotChatSave <name>?` | Save chat history             |
+| `:CopilotChatLoad <name>?` | Load chat history             |
+| `:CopilotChatPrompts`      | View/select prompt templates  |
+| `:CopilotChatModels`       | View/select available models  |
+| `:CopilotChat<PromptName>` | Use specific prompt template  |
+| `:Copilot signout`         | Signout                       |
+    
+
 4.  Start Vim/Neovim and invoke `:Copilot setup`.
 
 [Node.js]: https://nodejs.org/en/download/
