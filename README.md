@@ -1,16 +1,10 @@
-# Neovim My Own Lazy Config
+# 💤 LazyVim
 
-My first own config for neovim from scratch.
-## Contributors ✨
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-## NEOVIM
+## LAZY VIM
 <p align="center">
   <img src="assets/pict1.png" alt="ss" width="800px"/>
 </p>
