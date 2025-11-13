@@ -89,4 +89,4 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.showmode = false
 
 -- Set the colorscheme
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd([[colorscheme rose-pine]])
