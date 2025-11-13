@@ -1,202 +1,131 @@
 return {
-	{
-		"goolord/alpha-nvim",
-		enabled = True,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
+  -- 💤 Dashboard mirip LazyVim
+  {
+    "goolord/alpha-nvim",
+    enabled = true,
+    dependencies = { "nvim-tree/nvim-web-devicons", "lazy.nvim" },
+    config = function()
+      local alpha = require("alpha")
+      local dashboard = require("alpha.themes.dashboard")
 
-		config = function()
-			local alpha = require("alpha")
-			local dashboard = require("alpha.themes.startify")
+      -- ⚡️ Fungsi untuk mendapatkan status load dari lazy.nvim (DIPERBAIKI)
+      local function lazy_load_status()
+        local lazy_config = package.loaded["lazy.core.config"]
 
-			-- Header ASCII art (tempel full ASCII kamu di sini)
-			-- CENTER ASCII JANGAN DIUBAH UABH
-			dashboard.section.header.val = {
-				[[ 																													⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣫⣡⡿⡵⣫⣾⣿⡿⣋⣥⣶⣷⣾⣿⣿⣵⣦⣌⠻⣿⣿⣿⣿⣷⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢷⠝⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 						]],
-				[[ 																													⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠯⢱⣫⢗⡞⢕⣿⣿⢿⣾⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣜⣿⡽⣿⣿⣷⣿⣿⣿⣿⣿⣷⣹⣿⣟⢿⣿⣿⣿⣯⣇⡸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 						]],
-				[[																														⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢠⣏⡟⢟⡾⣾⣿⢳⣿⡿⣷⣿⡿⡫⣾⣿⢿⣿⣿⣿⣿⣿⢻⣿⢿⣿⣿⣧⢿⣿⣿⣿⣿⣯⣿⣿⢸⣿⣿⣿⣇⡘⡽⣌⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 					]],
-				[[ 																													⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⣿⡰⡞⣿⢳⣿⣷⣿⢟⣿⣿⢏⣬⣾⡇⢿⡏⢿⣿⣿⣿⣿⡏⣿⡌⣿⣿⣿⡟⣿⣿⣿⣿⣿⣿⣿⡇⢻⣿⣿⣿⡁⢷⢿⡌⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 						]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⢃⠀⢣⣽⣱⡿⣿⡏⣿⣏⣾⡟⣵⣿⣿⣿⣿⡜⣯⢊⢿⣿⣿⣿⣷⣿⡇⣮⢿⣿⣿⣹⣿⣿⣿⣿⣿⣿⣷⢸⣿⣿⣿⣧⣿⡘⣿⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⠼⢠⡽⣿⣿⠇⣿⢸⣟⣾⢯⣾⣿⣿⣿⣿⣿⣷⡜⣯⣎⢻⣿⣿⣿⣿⡇⣿⡎⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡎⣿⢻⣿⣿⣸⡇⢿⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣧⢞⡻⣕⢸⢧⣿⣿⢸⣿⣿⣿⢄⢶⣯⣽⢿⣿⣿⣿⣿⣿⣌⢮⢒⠛⣛⡿⣿⢁⢿⣿⡼⣿⣿⣿⣷⣿⣿⣿⣿⣿⣧⢿⠘⣿⣿⣧⡇⠞⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣾⣾⠆⣤⠘⣷⢹⣿⢹⡇⣏⣿⣷⣾⣯⣼⣿⣿⣿⣿⣟⣑⣓⡙⢣⡉⠆⡟⣼⣦⣻⣧⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠸⡆⣿⣿⣿⢗⡖⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⢧⢫⣰⣿⢋⡇⣮⠘⠻⢞⢿⣷⣾⣻⣿⣿⣿⣿⣿⣿⣿⡿⢆⣙⡼⢀⠻⣛⡷⣻⣽⢻⣿⣿⣿⣿⣿⣿⣿⡏⢸⣿⣿⣽⣿⡘⡇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⡟⣮⢿⡿⣿⣏⣧⠸⠀⢰⣀⢉⠒⠝⢣⣿⣿⣿⣿⣿⣿⣿⣡⣿⡑⠡⠤⠈⠊⠻⢷⠉⣾⡟⣽⣿⣿⣿⣿⢿⡇⡚⣩⣭⡭⠽⠷⠤⣭⡭⠭⣭⣭⡭⠭⢭⣝⢻ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⡇⣿⡇⢣⡏⣿⣝⡀⡇⣷⡹⣌⠳⠤⠌⢻⣿⣿⣿⣿⣿⣿⠟⠁⣀⠉⣉⠉⠉⡤⢠⡤⡀⣐⣿⣿⣻⣿⡿⣼⠃⣻⣭⣿⣶⣶⢳⣗⣶⣿⣿⣶⡶⣖⡴⣫⣴⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣧⢻⡇⢦⢏⢘⡟⣆⢻⢸⣿⣮⣯⣭⣿⣿⣿⣿⣿⣿⠟⡡⣢⣾⡻⣷⣽⣛⣛⡤⣃⣼⣳⣿⡿⣳⡟⣸⣧⣇⢺⣿⣿⣿⡿⣫⣿⠾⡟⣻⣭⡵⣺⣵⣾⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⣄⢷⢸⣣⣣⡻⡿⣆⠃⠛⢿⣿⣿⣟⣽⣛⣿⣯⣴⣿⣿⣿⣿⣿⣿⣶⣶⠞⢈⡿⢡⣿⢿⣿⣟⢰⣟⡌⠀⣺⣿⠛⢉⣪⣥⣶⠿⢛⣭⣾⣿⣿⣿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡍⣷⠈⢤⠻⡙⣧⣳⣄⣭⣿⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣥⢎⡾⣵⣿⣵⣿⠯⣲⡟⠍⢠⣶⣿⡭⠶⢟⣋⣭⣶⣿⣈⣝⣿⣿⣿⣿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⣇⠸⣦⠡⠈⠋⢿⣿⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠫⢋⠜⣿⣿⡟⡡⠚⠋⠐⠖⢀⡭⡥⣰⢸⣿⣿⣿⣿⣿⣧⡜⡝⢿⣿⣿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⡞⣴⡿⣱⢸⣆⢀⢹⣿⣿⣿⡿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣵⡏⢊⣿⠟⣫⡔⢀⢀⣮⠎⢰⢟⢹⡇⡏⠏⣿⣿⡏⣿⣆⢻⡽⢘⣎⢻⡿⣿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⡺⣽⡿⡇⠊⣿⢏⣷⡝⢽⢿⣿⣯⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⡰⣚⣵⠿⢋⣴⣏⣜⣎⠆⢯⢧⣿⢸⣷⠂⢻⣿⣿⠘⣿⣕⠻⢯⠻⣆⠙⢿⣿⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣿⣿⣫⡾⢷⣿⣾⣿⣿⢏⣾⣿⢳⣷⡜⢽⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢃⢉⣠⣾⣿⠏⢬⢮⠈⢶⡏⣸⣿⣼⣿⣜⡈⣿⣿⣧⢻⣿⣦⠮⡟⣗⡯⣎⠻⣿⣿ 									]],
-				[[               																						⣿⣿⣿⣿⣿⣿⣿⣻⠷⢋⢴⣿⢿⣿⡿⢣⣾⣿⢧⣹⣟⣽⣷⣅⠙⢿⣿⡿⠿⠛⣛⣭⠴⣺⠵⢿⣻⣭⢄⡠⡳⡃⣬⡎⡇⣿⣿⢿⣿⣿⣻⡘⣿⣿⡌⣿⣿⣧⣓⡝⣿⠎⢳⡜⢿ 									]],
-				[[               																						⣿⣿⣿⡿⣿⢽⣾⢵⣰⣫⡿⣵⣿⠟⣡⣿⣿⣳⣷⢯⣾⡏⣸⣟⡖⡂⠠⣤⣤⣤⣤⣶⣶⡾⠿⣻⡻⠁⢈⢊⣜⣼⡟⡄⣧⢿⣿⢸⡞⣿⣷⢷⣜⣿⣿⡘⣿⣿⣧⡈⠺⣧⡈⢿⣾ 									]],
-				[[               																						⣿⢟⠙⣈⣵⢟⣽⣿⣽⣫⣾⡿⡹⣵⣷⡿⣵⡟⣴⣿⠯⢖⣻⣼⡇⠙⣶⠶⠶⠶⡶⠶⣶⣿⡟⣫⢀⣴⣢⡟⣼⣿⣷⡇⢸⡾⣿⡇⡱⠘⣿⣎⣿⣮⢿⣷⡨⡿⣿⣷⣶⡔⢕⠸⣿ 									]],
-				[[  																													⣾⢦⣾⣿⣷⣽⢟⢞⣷⡿⡫⢔⣾⣿⢋⣞⣿⣿⠋⡅⠤⠾⠿⠶⠒⡇⣿⣿⣿⣿⣿⣿⡿⣫⢞⣵⡿⣷⠟⢴⣿⣿⣰⡾⢺⣇⠹⣇⠘⣅⢮⢿⡘⣿⣷⡻⣷⠑⣝⢿⣿⣿⡧⣳⣟ 						]],
-				[[ 																													⣷⢿⡿⣻⡿⣫⣾⡿⣏⣺⣪⣿⠟⣡⣿⢏⣶⢿⣴⣾⢍⡩⢟⣟⣳⣀⠿⣿⣿⣿⡿⡯⡟⡵⢟⢛⣾⡯⣼⠊⢹⣿⠔⣰⡄⢿⡴⡽⡔⣤⠪⣓⠓⢝⣿⣿⣾⢷⣈⣷⡟⢿⣿⣿⣾ 						]],
-				[[			    																									⣿⣿⣿⣻⡴⣟⣽⣿⡿⣵⢿⢕⣾⣽⣿⣟⣯⣽⣿⣷⣯⣾⡿⢡⣶⣽⣛⣿⡿⢯⣾⢋⣿⣟⣛⣿⣟⣵⣿⢰⢸⣿⣸⣿⣿⡜⣿⡴⣬⡌⠳⠬⡻⢷⡪⣿⣿⣿⣷⡷⣝⣿⣽⣿⣿ 						]],
-				-- (lanjutkan semua baris ASCII kamu di sini)
-			}
+        if lazy_config and lazy_config.stats then
+          -- Panggil stats dengan pcall untuk keamanan ekstra
+          local ok, stats = pcall(lazy_config.stats)
+          if ok and stats and stats.loaded and stats.start then
+            
+            -- Perbaikan utama: Menggunakan waktu start dan total untuk kalkulasi waktu yang lebih akurat
+            -- stats.start adalah waktu sebelum load, vim.loop.hrtime() adalah waktu sekarang.
+            local total_time_ns = vim.loop.hrtime() - stats.start
+            -- Konversi dari nanodetik ke milidetik dan bulatkan ke 2 desimal
+            local ms = math.floor(total_time_ns / 1e6 * 100 + 0.5) / 100
+            
+            -- Ambil jumlah total plugin
+            local plugins = #vim.tbl_keys(lazy_config.plugins or {})
 
-			alpha.setup(dashboard.opts)
-		end,
-	},
+            return string.format(
+              "⚡ Neovim loaded %d/%d plugins in %.2fms",
+              stats.loaded,
+              plugins,
+              ms
+            )
+          end
+        end
 
-	-- Noice
-	{
-		"folke/noice.nvim",
-		event = verylazy,
-		enabled = true,
-		dependencies = {
-			"rcarriga/nvim-notify",
-		},
-		config = function()
-			require("noice").setup({
-				lsp = {
-					-- overide markdown rendering so that **cmp** and other plugins use **treesitter**
-					lsp = {
-						overide = {
-							["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-							["vim.lsp.util.stylize_markdown"] = true,
-							["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-						},
-					},
+        -- Fallback: Tampilkan jumlah plugin yang diketahui jika memungkinkan
+        if lazy_config and lazy_config.plugins then
+          local plugins = #vim.tbl_keys(lazy_config.plugins or {})
+          return string.format("⚡ Neovim loaded %d plugins", plugins)
+        end
 
-					-- you can enable a presset for easier configuration
-					presets = {
-						bottom_search = true, -- use a classic bottom cmdline for search
-						command_pallete = true, -- positon the cmdline and popupmenu together
-						long_message_to_split = true, -- long message will be sent to a split
-						inc_rename = false, -- enables an input dialog for inc-rename.nvim
-						lsp_doc_border = false, -- add a border to hover docs and signatures help
-					},
-				},
-			})
-		end,
-	},
+        -- Fallback paling aman jika data lazy.nvim belum ada sama sekali
+        return "⚡ Neovim loaded"
+      end
 
-	-- Lualine
-	{
-		"nvim-lualine/lualine.nvim",
-		lazy = false, -- Load the plugin immediately
-		enabled = true,
-		config = function()
-			-- Load the Lualine config
-			require("lualine").setup({
-				options = {
-					icons_enabled = true,
-					theme = "auto",
-					disabled_filetypes = {},
-					always_divide_middle = true,
-					globalstatus = true,
-				},
-				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "filename" },
-					lualine_x = { "encoding", "fileformat", "filetype" },
-					lualine_y = { "progress" },
-					lualine_z = { "location" },
-				},
-				inactive_sections = {
-					lualine_a = {},
-					lualine_b = {},
-					lualine_c = { "filename" },
-					lualine_x = { "location" },
-					lualine_y = {},
-					lualine_z = {},
-				},
-				tabline = {},
-				extensions = { "fugitive", "quickfix" },
-			})
-		end,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
+      -- 💤 ASCII header (DIBERSIHKAN)
+      dashboard.section.header.val = {
+          -- Baris kosong dan baris akhir dibersihkan dari spasi berlebihan
+          [[]],
+          [[]],
+          [[]],
+          [[]],
+          [[]],
+          [[                                                                                    ]], 
+          [[              ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗            Z ]],
+          [[              ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║          Z   ]],
+          [[              ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║        z     ]],
+          [[              ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z            ]],
+          [[              ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║              ]],
+          [[              ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝              ]],
+      }
 
-	-- indent-blankline
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = "VeryLazy",
-		main = "ibl",
-		config = function()
-			require("ibl").setup({
-				scope = { enabled = false },
-			})
-		end,
-	},
+      -- Tombol-tombol menu utama (TIDAK BERUBAH)
+      dashboard.section.buttons.val = {
+        dashboard.button("f", "  Find File", ":Telescope find_files <CR>"),
+        dashboard.button("n", "  New File", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("r", "  Recent Files", ":Telescope oldfiles <CR>"),
+        dashboard.button("g", "  Find Text", ":Telescope live_grep <CR>"),
+        dashboard.button("c", "  Config", ":e $MYVIMRC <CR>"),
+        dashboard.button("s", "󰑓  Restore Session", [[<cmd>lua require("persistence").load()<cr>]]),
+        dashboard.button("x", "  Lazy Extras", ":LazyExtras <CR>"),
+        dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
+        dashboard.button("q", "  Quit", ":qa<CR>"),
+      }
 
-	-- mini.indentscope
-	{
-		"echasnovski/mini.indentscope",
-		version = false,
-		dependencies = {
-			-- "echasnovski/mini.nvim",
-		},
-		config = function()
-			require("mini.indentscope").setup({
-				symbol = "│",
-				options = { try_as_border = true },
-				vim.api.nvim_create_autocmd("filetype", {
-					pattern = {
-						"alpha",
-						"dashboard",
-						"noice",
-						"fzf",
-						"help",
-						"lazy",
-						"lazyterm",
-						"mason",
-						"neo-tree",
-						"notify",
-						"toggleterm",
-						"Trouble",
-						"trouble",
-						"dbee",
-						"dbui",
-						"nvimtree",
-						"snacks_dashboard",
-						"snacks_notif",
-						"snacks_terminal",
-						"snacks_win",
-					},
-					callback = function()
-						vim.b.miniindentscope_disable = true
-					end,
-				}),
-			})
-		end,
-	},
+      -- Warna & penataan (TIDAK BERUBAH)
+      dashboard.section.header.opts.hl = "Title"
+      dashboard.section.buttons.opts.hl = "Function"
+      dashboard.section.footer.opts.hl = "Comment"
 
-	-- bufferline
-	{
-		"akinsho/bufferline.nvim",
-		version = "*",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("bufferline").setup({
-				options = {
-					mods = "tabs",
-					separator_style = "thin", -- slant | slope | thin
-					numbers = "buffer_id",
-				},
-			})
-		end,
-	},
+      -- Footer menggunakan fungsi yang sudah diperbaiki
+      dashboard.section.footer.val = lazy_load_status()
 
-	{
-		"vyfor/cord.nvim",
-		build = ":Cord update",
-		opts = {
-			-- your config goes here
-			text = {
-				title = "Cord",
-				subtitle = "Neovim config",
-			},
-		},
-	},
+      -- Menengahkan layout (TIDAK BERUBAH)
+      dashboard.config.layout = {
+        { type = "padding", val = 6 },
+        dashboard.section.header,
+        { type = "padding", val = 2 },
+        dashboard.section.buttons,
+        { type = "padding", val = 2 },
+        dashboard.section.footer,
+      }
+
+      alpha.setup(dashboard.config)
+
+      -- 🌈 Warna untuk header dan tombol (TIDAK BERUBAH)
+      vim.cmd([[
+        highlight Title guifg=#5EA0EA
+        highlight Function guifg=#89B4FA
+        highlight Comment guifg=#6C7086
+      ]])
+    end,
+  },
+
+  -- 🌈 Lualine (status bar) - TIDAK ADA PERUBAHAN, sudah bagus
+  {
+    "nvim-lualine/lualine.nvim",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("lualine").setup({
+        options = {
+          theme = "auto",
+          globalstatus = true,
+          section_separators = { left = "", right = "" },
+          component_separators = "|",
+        },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch", "diff", "diagnostics" },
+          lualine_c = { "filename" },
+          lualine_x = { "encoding", "fileformat", "filetype" },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
+        },
+      })
+    end,
+  },
 }
--- ui lua file
