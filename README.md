@@ -4,19 +4,22 @@ A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
 Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
 
-## LAZY VIM
 <p align="center">
-  <img src="assets/pict1.png" alt="ss" width="800px"/>
+  <img src="assets/pict5.png" alt="ss" width="800px"/>
 </p>
 
-## Update with Discord rich
 <p align="center">
-    <img src="assets/pict2 update with discord rich.png" alt="ss" width="800px"/>
+    <img src="assets/pict7.png" alt="ss" width="800px"/>
   </p>
+  
+<p align="center">
+    <img src="assets/pict8.png" alt="ss" width="800px"/>
+  </p>
+
   
 ## With terminal
 <p align="center">
-    <img src="assets/pict3 update with terminal.png" alt="ss" width="800px"/>
+    <img src="assets/pict6.png" alt="ss" width="800px"/>
   </p>
   
 ## Copilot
